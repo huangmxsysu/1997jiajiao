@@ -1,0 +1,17 @@
+* {
+    font-family:"Microsoft JhengHei", "Microsoft YaHei",Arial,Helvetica,sans-serif;
+}
+html, body {
+    height: 100%;
+}
+.my-font {
+    font-family:"Microsoft JhengHei", "Microsoft YaHei",Arial,Helvetica,sans-serif !important;
+}
+
+.base.menu .item:not(.logo):hover {
+    border-bottom: 3px solid #D90429;
+}
+
+.ui.message .list:not(.ui) li:before {
+    content: '*' !important;
+}

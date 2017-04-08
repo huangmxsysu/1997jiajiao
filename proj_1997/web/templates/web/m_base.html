@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}1997{% endblock %}</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/png" href="/static/img/logo.png"/>
+
+  <link rel="stylesheet" type="text/css" href="/static/css/sweetalert2.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/components/dimmer.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/link_component.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/m_base.css">
+  {% block stylesheet %}{% endblock %}
+
+</head>
+<body>
+  <div class="ui fluid four item doubling huge menu borderless base">
+      <a class="item index" href="/m/">首页</a>
+      <a class="item teachers" href="/m/teachers">家教</a>
+      <a class="item activity" href="/m/activity">活动</a>
+      <a class="item about" href="/m/about">关于</a>
+  </div>
+  {% block content %}
+  empty body
+  {% endblock %}
+
+  <script type="text/javascript" src="http://cdn.css.net/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/css/semantic.min.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.md5.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.backstretch.min.js"></script>
+  <script type="text/javascript" src="/static/js/sweetalert2.min.js"></script>
+  <script type="text/javascript" src="/static/js/base_lib.js"></script>
+  <script type="text/javascript" src="/static/css/components/dimmer.min.js"></script>
+
+  {% block javascript %}{% endblock %}
+  <script type="text/javascript">
+    $.ajaxSetup({headers: {"X-CSRFToken": '{{ csrf_token }}'}});
+  </script>
+  <script>if (window.location.hostname === "127.0.0.1") {
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    }</script>
+</body>
+</html>

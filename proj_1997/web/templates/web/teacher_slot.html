@@ -1,0 +1,68 @@
+{% extends "web/base.html" %}
+
+{% block title %}
+教师时段管理
+{% endblock %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/static/js/tablesort.js"></script>
+<script type="text/javascript" src="/static/js/teacher_slot.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui container main">
+  <div class="grid ui">
+    <div class="row ui">
+      <div class="column one wide">
+        <div class="ui secondary pointing vertical menu compact">
+          <a class="item" href="{% url 'rsv_manage'%}">
+            预约管理
+          </a>
+          <a class="item active">
+            教师时段管理
+          </a>
+          <a class="item" href="/admin">
+            数据库管理
+          </a>
+        </div>
+      </div>
+      <div class="column fifteen wide">
+        <h1 class="ui header my-font">教师时段列表</h1>
+        <div class="ui input ">
+          <input type="text" placeholder="搜索姓名，学校..." class="search">
+        </div>
+        <button class="ui button icon search"><i class="icon search"></i></button>
+
+        <table class="ui sortable table basic celled selectable">
+          <thead>
+            <tr>
+              <th>姓名</th>
+              <th>时段</th>
+              <th>其他</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in info %}
+            <tr class="teacher">
+              <td class="name"><a href="/admin/d?id={{item.ts.id}}">{{ item.ts.name }}</a></td>
+              <td class="slots">
+                {% for slot in item.slots %}
+                {{ slot }}  
+                {% endfor %}
+              </td>
+              <td class="other">{{ item.ts.school }} {{ item.ts.grade }} {{ item.ts.college }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% endblock %}

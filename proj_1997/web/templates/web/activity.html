@@ -1,0 +1,29 @@
+{% extends "web/base.html" %}
+
+{% block title %}
+主页
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+<style type="text/css">
+    .container.main {
+        font-size: 1.5rem; 
+    }
+</style>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".base.menu .item.activity").addClass("now");
+    });
+</script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui container main my-font">
+    建设中...
+</div>
+{% endblock %}

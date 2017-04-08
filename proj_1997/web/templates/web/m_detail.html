@@ -1,0 +1,142 @@
+{% extends "web/m_base.html" %}
+
+{% block title %}
+教师详情
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/static/css/m_detail.css">
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/static/js/m_detail.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui container main fluid">
+  <div class="ui grid">
+    <div class="ui row centered">
+      <div class="column fluid image">
+        <img class="ui image rounded centered fluid" src="{{ teacher.avatar.url }}">
+      </div>
+    </div> <!-- 有照片的标题头 row -->
+
+    <div class="ui row centered">
+      <div class="column fluid name">
+        {{ teacher.name }}
+      </div>
+    </div>
+
+    <div class="ui row centered">
+      <div class="column fluid info">
+        {{ teacher.school }} · {{ teacher.grade }} · {{ teacher.college }}
+      </div>
+    </div>
+
+    <div class="ui row centered">
+      <div class="column fluid info">
+        {{ teacher.subject }}
+      </div>
+    </div>
+
+  </div>
+
+
+  <h2 class="ui divider horizontal header my-font">
+    <i class="icon user"></i>
+    预约补习
+  </h2>
+
+  <div class="ui grid">
+    <div class="row ui centered">
+      <div class="column fluid center aligned">
+        <nav class="cl-effect-7">
+          {% for item in slots %}
+          <a class="time">{{ item }}</a>
+          {% endfor %}
+        </nav>
+      </div>
+    </div>
+    <div class="row ui centered">
+      <div class="column fluid center aligned">
+        <nav class="cl-effect-20">
+          <a href="#start-reservation" class="start" id="start-reservation">
+            <span data-hover="开始预约">开始预约</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <input type="hidden" name="teacher-id" value="{{ teacher.id }}">
+
+    <div class="ui row centered reservation">
+      <div class="column fluid">
+        <form class="ui form reservation huge">
+          <div class="field">
+            <label>手机号码</label>
+            <input type="text" name="phone-num">
+          </div>
+          <div class="field">
+            <label>您的姓名</label>
+            <input type="text" name="name">
+          </div>
+          <div class="field">
+            <label>辅导地址</label>
+            <textarea rows="3" name="address"></textarea>
+          </div>
+          <div class="two fields">
+            <div class="field">
+              <label>手机验证码</label>
+              <input type="text" name="code">
+            </div>
+            <div class="field">
+              <label>　</label>
+              <button class="ui button huge my-font" type="button" id="send-code">发送验证码</button>
+            </div>
+          </div>
+          <div class="ui warning message">
+            <ul class="list">
+            </ul>
+          </div>
+          <button class="ui button huge my-font" type="button" id="send-rsv">完成预约</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="ui divider horizontal header my-font">
+    <i class="icon photo"></i>
+    校园卡
+  </h2>
+
+  <div class="ui grid">
+    <div class="ui row">
+      <div class="column fluid center aligned">
+        <div class="ui images">
+          <img class="ui image rounded" src="{{ teacher.card.url }}">
+        </div>
+      </div>
+    </div> <!-- 校园卡 row -->
+  </div>
+
+  <h2 class="ui divider horizontal header my-font">
+    <i class="icon file text"></i>
+    个人简介
+  </h2>
+
+  <div class="ui grid">
+    <div class="ui row">
+      <div class="column fluid">
+        <div class="ui piled segment cv">
+          {% autoescape off %}
+          {{ teacher.description }}
+          {% endautoescape %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

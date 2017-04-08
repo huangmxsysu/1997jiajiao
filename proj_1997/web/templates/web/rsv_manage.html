@@ -1,0 +1,114 @@
+{% extends "web/base.html" %}
+
+{% load tz %}
+
+{% block title %}
+预约管理
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/static/css/rsv_manage.css">
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/static/js/tablesort.js"></script>
+<script type="text/javascript" src="/static/js/rsv_manage.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui container fluid main">
+  <div class="grid ui">
+    <div class="row ui">
+      <div class="column one wide">
+        <div class="ui secondary pointing vertical menu compact">
+          <a class="item active">
+            预约管理
+          </a>
+          <a class="item" href="{% url 'slot' %}">
+            教师时段管理
+          </a>
+          <a class="item" href="/admin">
+            数据库管理
+          </a>
+        </div>
+      </div>
+      <div class="column fourteen wide">
+        <h1 class="ui header my-font">预约列表</h1>
+        <div class="ui input ">
+          <input type="text" placeholder="搜索姓名，预约人..." class="search">
+        </div>
+        <button class="ui button icon search"><i class="icon search"></i></button>
+
+        <div class="ui top attached tabular menu">
+          <div class="active item">全部</div>
+          <div class="item">未处理</div>
+          <div class="item">成功</div>
+          <div class="item">失效</div>
+        </div>
+
+        <div class="ui bottom attached active tab segment">
+          <table class="ui sortable table basic celled selectable">
+            <thead>
+              <tr>
+                <th>教师名</th>
+                <th>时段</th>
+                <th>家长名</th>
+                <th>家长电话</th>
+                <th>辅导地址</th>
+                <th>创建时间</th>
+                <th>状态</th>
+                <th>处理</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in info %}
+              <tr class="rsv">
+                <td class="teacher-name"><a href="/admin/d?id={{item.rsv.teacher.id}}">{{ item.rsv.teacher.name }}</a></td>
+                <td class="slots">
+                  {% for i in item.slots %}
+                  {{ i }}
+                  {% endfor %}
+                </td>
+                <td class="guest-name">{{ item.rsv.name }}</td>
+                <td class="guest-phone-num">{{ item.rsv.phone_num }}</td>
+                <td class="guest-address">{{ item.rsv.address }}</td>
+                <td class="ctime">
+                  {% timezone "Asia/Shanghai" %}
+                  {{ item.rsv.ctime }}
+                  {% endtimezone %}
+                </td>
+                <td class="status">
+                  {% if item.rsv.status == 0 %}
+                  未处理
+                  {% elif item.rsv.status == 1 %}
+                  成功
+                  {% elif item.rsv.status == 2 %}
+                  失效
+                  {% else %}
+                  {{item.rsv.status}}
+                  {% endif %}
+                </td>
+                <td>
+                  <div class="ui buttons mini">
+                    {% if item.rsv.status != 1 %}
+                    <button class="ui button set-succeed" rsv-id="{{ item.rsv.id }}">成功</button>
+                    {% endif %}
+                    {% if item.rsv.status != 2 %}
+                    <button class="ui button set-expired" rsv-id="{{ item.rsv.id }}">失效</button>
+                    {% endif %}
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% endblock %}

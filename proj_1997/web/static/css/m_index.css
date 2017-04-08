@@ -1,0 +1,37 @@
+.main {
+    margin: 50px 0 1rem 0;
+    padding: 0 5rem;
+}
+
+.container .sub-title {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 2rem;
+}
+
+.sub-des {
+    font-size: 1.35rem;
+    font-weight: 500;
+    background-color: rgba(0,0,0,0.34);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem 2rem;
+    color: white;
+    line-height: 1.6rem;
+}
+
+.sd.container {
+    padding: 0 2vw;
+}
+
+.slider:not(.container) {
+    width: 100%;
+    height: 700px;
+    background-color: lightgray;
+}
+
+.slider .item {
+    display: none;
+}

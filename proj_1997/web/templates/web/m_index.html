@@ -1,0 +1,55 @@
+{% extends "web/m_base.html" %}
+
+{% block title %}
+主页
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/static/css/m_index.css">
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/static/js/m_index.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui container main fluid">
+  <img class="ui image centered fluid" src="{{info.header.image.url}}">
+</div>
+<div class="ui container fluid">
+  <div class="sub-title">{{info.header.subtitle | linebreaksbr}}</div>
+</div>
+
+<div class="ui divider horizontal">
+  <i class="book icon red"></i>
+</div>
+
+<div class="ui container fluid sd">
+  <div class="slider">
+    <div class="sub-des"></div>
+
+    <input type="hidden" name="delay" value="{{info.header.slider_delay}}">
+    {% for item in info.sliders %}
+    <div class="item">
+      <img src="{{item.image.url}}">
+      <div class="content">{{item.description | linebreaksbr}}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="ui divider hidden"></div>
+
+  <div class="grid ui">
+    <div class="ui row equal width">
+      <div class="column center aligned">
+        <nav class="cl-effect-7">
+          <a href="/teachers">家教</a>
+          <a href="/about">关于我们</a>
+          <a href="#">活动</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

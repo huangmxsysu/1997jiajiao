@@ -1,0 +1,9 @@
+* {
+    font-family:"Microsoft JhengHei", "Microsoft YaHei",Arial,Helvetica,sans-serif;
+}
+html, body {
+    height: 100%;
+}
+.my-font {
+    font-family:"Microsoft JhengHei", "Microsoft YaHei",Arial,Helvetica,sans-serif !important;
+}

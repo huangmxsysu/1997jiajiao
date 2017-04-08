@@ -1,0 +1,31 @@
+{% extends "web/m_base.html" %}
+
+{% block title %}
+主页
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+<style type="text/css">
+    .container.main {
+        font-size: 1.5rem; 
+    }
+</style>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".base.menu .item.about").addClass("now");
+    });
+</script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui container main my-font">
+  {% autoescape off %}
+  {{ ab.content }}
+  {% endautoescape %}
+</div>
+{% endblock %}

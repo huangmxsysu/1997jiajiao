@@ -1,0 +1,62 @@
+{% extends "web/base.html" %}
+
+{% block title %}
+{{ t.name }} 的时段
+{% endblock %}
+
+{% block stylesheet %}
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/index.css"> -->
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/static/js/detail_slot.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui container text main">
+  <div class="ui grid">
+    <div class="ui row">
+    <div class="column two wide">
+        <div class="ui secondary pointing vertical menu compact">
+          <a class="item" href="{% url 'rsv_manage'%}">
+            预约管理
+          </a>
+          <a class="item active" href="{% url 'slot' %}">
+            教师时段管理
+          </a>
+          <a class="item" href="/admin">
+            数据库管理
+          </a>
+        </div>
+      </div>
+      <div class="column fourteen wide">
+        <h1 class="ui header my-font">{{ t.name }} 的时段</h1>
+        <input type="hidden" id="slot-id" value="{{ t.id }}">
+        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+        <div class="ui grid slots">
+          {% for item in slots %}
+          <div class="ui row slot">
+            <div class="five wide column">
+              <div class="ui input fluid">
+                <input type="text" value="{{ item }}">
+              </div>
+            </div>
+            <div class="four wide column">
+              <button class="ui button red basic delete">删除</button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="ui divider hidden"></div>
+        <button class="ui button basic" id="new-slot"><i class="icon plus"></i>增加时段</button>
+
+        <div class="ui divider hidden"></div>
+        <button class="ui button green inverted large right floated save">提交保存</button>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% endblock %}

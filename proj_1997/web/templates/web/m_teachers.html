@@ -1,0 +1,83 @@
+{% extends "web/m_base.html" %}
+
+{% block title %}
+平台教师
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/static/css/m_teachers.css">
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/static/js/m_teachers.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui main container fluid">
+  <div class="ui grid filter">
+    <div class="ui row five equal width">
+      <div class="column"><b>科目: </b></div>
+      <div class="column"><a class="{% if not subject %}active{% endif %}" href="/m/teachers?page={{now_page}}&gender={{gender}}">全部</a></div>
+      <div class="column"><a class="{% if subject == '语文' %}active{% endif %}" href="/m/teachers?page={{now_page}}&subject=语文&gender={{gender}}">语文</a></div>
+      <div class="column"><a class="{% if subject == '数学' %}active{% endif %}" href="/m/teachers?page={{now_page}}&subject=数学&gender={{gender}}">数学</a></div>
+      <div class="column"><a class="{% if subject == '英语' %}active{% endif %}" href="/m/teachers?page={{now_page}}&subject=英语&gender={{gender}}">英语</a></div>
+    </div>
+    <div class="ui row five equal width">
+      <div class="column"><b>性别: </b></div>
+      <div class="column"><a class="{% if not gender %}active{% endif %}" href="/m/teachers?page={{now_page}}&subject={{subject}}">全部</a></div>
+      <div class="column"><a class="{% if gender == 'male' %}active{% endif %}" href="/m/teachers?page={{now_page}}&gender=male&subject={{subject}}">男</a></div>
+      <div class="column"><a class="{% if gender == 'female' %}active{% endif %}" href="/m/teachers?page={{now_page}}&gender=female&subject={{subject}}">女</a></div>
+      <div class="column"></div>
+    </div>
+    <div class="ui divider"></div>
+  </div>
+
+  <div class="ui grid list">
+    {% for item in info %}
+
+    <div class="ui row teacher">
+      <div class="column six wide">
+        <img class="ui image rounded fluid" src="{{ item.ts.avatar.url }}">
+      </div>
+      <div class="column ten wide">
+        <h1 class="ui header my-font">{{ item.ts.name }}</h1>
+        <div class="info">{{ item.ts.school }} · {{ item.ts.grade }} · {{ item.ts.college }}</div>
+        <div class="info">{{ item.ts.subject }}</div>
+        <h2 class="ui header my-font">时段:</h2>
+        <div class="info">
+          {% for slot in item.slots %}
+          {% if forloop.last %}
+          {{ slot }}
+          {% else %}
+          {{ slot }},
+          {% endif %}
+          {% endfor %}
+        </div>
+        <a class="ui check large button basic right floated orange my-font" href="/m/detail?id={{ item.ts.id }}">
+          查看详情 <i class="icon right arrow"></i>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+
+
+    <div class="ui divider"></div>
+    <div class="ui row right aligned">
+      <div class="column">
+        <div class="ui pagination menu">
+          <a class="item" href="/teachers?page={{now_page| add:-1}}">上一页</a>
+          {% for item in page_nums %}
+            {% if item == now_page %}
+            <a class="disabled item">{{item}}</a>
+            {% else %}
+            <a class="item" href="/teachers?page={{item}}">{{item}}</a>
+            {% endif %}
+          {% endfor %}
+          <a class="item" href="/teachers?page={{now_page| add:1}}">下一页</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

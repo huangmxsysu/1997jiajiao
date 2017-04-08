@@ -1,0 +1,39 @@
+.container.main {
+    background-color: white;
+    padding: 30px 10px 0 10px !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    border: 1px solid #e9e9e9;
+    border-radius: 5px;
+}
+
+.ui.grid {
+    margin: 0 !important;
+}
+
+.filter {
+    font-weight: 450;
+    /*margin-top: 50px !important;*/
+}
+
+.filter .active {
+    font-weight: 600;
+}
+
+.filter a:not(.active) {
+    color: black;
+}
+
+.filter a:not(.active):hover {
+    color: #1e70bf;
+}
+
+.filter .divider {
+    /*margin: 0 1rem 0 1rem !important;*/
+}
+
+.grid.list {
+    /*margin-top: 50px !important;*/
+    /*border: 1px solid #e9e9e9;*/
+    padding: 1rem 0 1rem 0;
+}
